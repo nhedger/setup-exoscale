@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 900 100" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <rect width="900" height="100" style="fill: rgb(218, 41, 28);" bx:origin="0 0"/>
+  <text style="fill: rgb(255, 255, 255); font-family: MonoLisa; font-size: 35px; font-weight: 700; white-space: pre;" x="146.163" y="63.546">Setup Exoscale CLI GitHub Action</text>
+  <path d="M 71.609 20 L 37.056 80 L 41.878 80 L 71.609 28.572 L 71.609 37.142 L 46.967 80 L 51.789 80 L 71.609 45.714 L 71.609 54.285 L 56.609 80 L 61.699 80 L 71.609 62.856 L 71.609 71.427 L 66.52 80 L 106.163 80 L 71.609 20 Z" fill="#fff" style=""/>
+</svg>

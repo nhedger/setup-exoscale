@@ -1,0 +1,50 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        version: [ "latest", "1.67.0" ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Exoscale CLI
+        uses: ./
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          version: ${{ matrix.version }}
+      - name: Test the CLI
+        run: exo version
+  test-authenticated:
+    name: Test Authenticated
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        version: [ "latest", "1.67.0" ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Exoscale CLI
+        uses: ./
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          authenticate: true
+          zone: ch-gva-2
+          version: ${{ matrix.version }}
+          account: ${{ secrets.EXOSCALE_ACCOUNT }}
+          key: ${{ secrets.EXOSCALE_KEY }}
+          secret: ${{ secrets.EXOSCALE_SECRET }}
+      - name: Test the CLI
+        run: exo config list
