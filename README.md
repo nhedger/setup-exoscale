@@ -1,5 +1,6 @@
 ![Banner](.github/banner.svg)
 
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/nhedger/setup-exoscale?label=latest&logo=github)](https://github.com/marketplace/actions/setup-exoscale)
 [![Test](https://github.com/nhedger/setup-exoscale/actions/workflows/test.yaml/badge.svg)](https://github.com/nhedger/setup-exoscale/actions/workflows/test.yaml)
 [![Integrate](https://github.com/nhedger/setup-exoscale/actions/workflows/integrate.yaml/badge.svg)](https://github.com/nhedger/setup-exoscale/actions/workflows/integrate.yaml)
 
