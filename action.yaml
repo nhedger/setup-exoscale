@@ -1,4 +1,4 @@
-name: setup-exoscale
+name: Setup Exoscale
 author: nhedger
 description: Setup Exoscale CLI in GitHub Actions
 branding:
