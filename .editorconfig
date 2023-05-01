@@ -9,6 +9,7 @@ trim_trailing_whitespace = true
 
 [*.md]
 insert_final_newline = false
+indent_size = 2
 
 [*.{yml,yaml}]
 indent_size = 2

@@ -7,58 +7,55 @@
 # Setup Exoscale CLI in GitHub Actions
 
 **Setup Exoscale** is a GitHub action that provides a cross-platform interface
-for setting up the [Exoscale CLI](https://github.com/exoscale/cli) in GitHub Actions
-runners.
+for setting up the [Exoscale CLI](https://github.com/exoscale/cli) in GitHub
+Actions runners.
 
 ## Inputs
 
 The following inputs are supported.
 
-### `version`
+```yaml
+- name: Setup Exoscale
+  uses: nhedger/setup-exoscale@v1
+  with:
 
-The `version` input is used to specify the version of the CLI to install. If
-unspecified, the latest version will be installed.
+    # The version of the Exoscale CLI to install.
+    # This input is optional and defaults to "latest".
+    # Example values: "1.67.0", "latest"
+    version: "latest"
 
-Example values: `1.67.0`, `latest`
+    # Whether to authenticate the Exoscale CLI.
+    # This input is optional and defaults to "false".
+    # Example values: "true", "false"
+    authenticate: false
 
-### `authenticate`
+    # The default Exoscale zone to use when authenticating the CLI.
+    # This input is optional and defaults to "ch-gva-2".
+    # This input is required if "authenticate" is set to "true".
+    # Example values: "ch-gva-2", "de-fra-1"
+    zone: "<exoscale-zone>"
 
-The `authenticate` input is used to specify whether to authenticate the CLI.
-Unless explicitly set to `true`, the CLI will not be authenticated.
+    # The Exoscale account to use when authenticating the CLI.
+    # This input is optional.
+    # This input is required if "authenticate" is set to "true".
+    # Example value: "my-account"
+    account: "<exoscale-account-name>"
 
-Example values: `true`, `false`
+    # The Exoscale API key to use when authenticating the CLI.
+    # This input is optional.
+    # This input is required if "authenticate" is set to "true".
+    # Example value: "EXOb7e97b99f76e32d36351792f"
+    key: "<exoscale-api-key>"
 
-### `zone`
+    # The Exoscale API secret to use when authenticating the CLI.
+    # This input is optional.
+    # This input is required if "authenticate" is set to "true".
+    # Example value: "yftnYtkmylaguBIkTGslohShq5wKHLEtcTGQbGGBGxY"
+    secret: "<exoscale-api-secret>"
+```
 
-The `zone` input is used to specify the default Exoscale zone to use when
-authenticating the CLI. This input is only used if `authenticate` is set to
-`true`. By default, the `ch-gva-2` zone is used.
-
-Example values: `ch-gva-2`, `de-fra-1`
-
-### `account`
-
-The `account` input is used to specify the Exoscale account name to use when
-authenticating the CLI. This input is only used if `authenticate` is set to
-`true`.
-
-Example values: `my-account`
-
-### `key`
-
-The `key` input is used to specify the Exoscale API key to use when
-authenticating the CLI. This input is only used if `authenticate` is set to
-`true`.
-
-Example value: `EXOb7e97b99f76e32d36351792f`
-
-### `secret`
-
-The `secret` input is used to specify the Exoscale API secret to use when
-authenticating the CLI. This input is only used if `authenticate` is set to
-`true`.
-
-Example value: `yftnYtkmylaguBIkTGslohShq5wKHLEtcTGQbGGBGxY`
+> Be sure to provide values for the `zone`, `account`, `key` and `secret`
+> inputs when setting `authenticate` to `true`.
 
 ## Examples
 
