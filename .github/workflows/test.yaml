@@ -21,8 +21,9 @@ jobs:
       - name: Setup Exoscale CLI
         uses: ./
         with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           version: ${{ matrix.version }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: Test the CLI
         run: exo version
   test-authenticated:
@@ -39,12 +40,13 @@ jobs:
       - name: Setup Exoscale CLI
         uses: ./
         with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           authenticate: true
           zone: ch-gva-2
           version: ${{ matrix.version }}
           account: ${{ secrets.EXOSCALE_ACCOUNT }}
           key: ${{ secrets.EXOSCALE_KEY }}
           secret: ${{ secrets.EXOSCALE_SECRET }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: Test the CLI
         run: exo config list
