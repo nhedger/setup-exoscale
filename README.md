@@ -65,8 +65,8 @@ Example value: `yftnYtkmylaguBIkTGslohShq5wKHLEtcTGQbGGBGxY`
 Setup the latest version of the Exoscale CLI.
 
 ```yaml
--   name: Setup Exoscale CLI
-    uses: nhedger/setup-exoscale@v1
+- name: Setup Exoscale CLI
+  uses: nhedger/setup-exoscale@v1
 ```
 
 ### Specific version
@@ -74,10 +74,10 @@ Setup the latest version of the Exoscale CLI.
 Install version `1.67.0` of the Exoscale CLI.
 
 ```yaml
--   name: Setup Exoscale CLI
-    uses: nhedger/setup-exoscale@v1
-    with:
-        version: 1.67.0
+- name: Setup Exoscale CLI
+  uses: nhedger/setup-exoscale@v1
+  with:
+    version: 1.67.0
 ```
 
 ### With authentication
@@ -85,14 +85,14 @@ Install version `1.67.0` of the Exoscale CLI.
 Install the latest version of the Exoscale CLI and authenticate it.
 
 ```yaml
--   name: Setup Exoscale CLI
-    uses: nhedger/setup-exoscale@v1
-    with:
-        authenticate: true
-        account: my-account
-        zone: ch-gva-2
-        key: ${{ secrets.EXOSCALE_KEY }}
-        secret: ${{ secrets.EXOSCALE_SECRET }}
+- name: Setup Exoscale CLI
+  uses: nhedger/setup-exoscale@v1
+  with:
+    authenticate: true
+    account: my-account
+    zone: ch-gva-2
+    key: ${{ secrets.EXOSCALE_KEY }}
+    secret: ${{ secrets.EXOSCALE_SECRET }}
 ```
 
 ## Caveats
