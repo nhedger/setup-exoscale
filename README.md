@@ -5,7 +5,7 @@
 
 # Setup Exoscale CLI in GitHub Actions
 
-This actions provides a **cross-platform** interface for setting up
+This action provides a **cross-platform** interface for setting up
 the [Exoscale CLI](https://github.com/exoscale/cli) in Github Actions.
 
 ## Inputs
