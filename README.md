@@ -67,6 +67,9 @@ Setup the latest version of the Exoscale CLI.
 ```yaml
 - name: Setup Exoscale CLI
   uses: nhedger/setup-exoscale@v1
+
+- name: Retrieve Exoscale status
+  run: exo status
 ```
 
 ### Specific version
@@ -78,6 +81,9 @@ Install version `1.67.0` of the Exoscale CLI.
   uses: nhedger/setup-exoscale@v1
   with:
     version: 1.67.0
+
+- name: Retrieve Exoscale status
+  run: exo status
 ```
 
 ### With authentication
@@ -93,6 +99,9 @@ Install the latest version of the Exoscale CLI and authenticate it.
     zone: ch-gva-2
     key: ${{ secrets.EXOSCALE_KEY }}
     secret: ${{ secrets.EXOSCALE_SECRET }}
+
+- name: List Exoscale Compute instances
+  run: exo vm list
 ```
 
 ## Caveats
