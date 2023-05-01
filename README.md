@@ -110,7 +110,7 @@ which means that they are subject to harsher rate limits.
 > most of them share a common IP address, which increases the likelihood of
 > hitting the rate limit.
 
-If you encounter rate limiting issues, you can set the `GITHUB_TOKEN`
+If you encounter rate limiting issues, try setting the `GITHUB_TOKEN`
 environment variable to authenticate the requests and increase the
 [rate limit][rate-limit].
 
