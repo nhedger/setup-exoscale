@@ -54,9 +54,6 @@ The following inputs are supported.
     secret: "<exoscale-api-secret>"
 ```
 
-> Be sure to provide values for the `zone`, `account`, `key` and `secret`
-> inputs when setting `authenticate` to `true`.
-
 ## Examples
 
 ### Basic example
