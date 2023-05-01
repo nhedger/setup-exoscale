@@ -85,15 +85,32 @@ Install version `1.67.0` of the Exoscale CLI.
 Install the latest version of the Exoscale CLI and authenticate it.
 
 ```yaml
+-   name: Setup Exoscale CLI
+    uses: nhedger/setup-exoscale@v1
+    with:
+        authenticate: true
+        account: my-account
+        zone: ch-gva-2
+        key: ${{ secrets.EXOSCALE_KEY }}
+        secret: ${{ secrets.EXOSCALE_SECRET }}
+```
+
+## Caveats
+
+This action makes HTTP requests to the GitHub API to determine the URL of
+the assets to download. By default, these requests are made anonymously,
+which means that they are subject to harsher rate limits. If you encounter
+rate limiting issues, you can set the `GITHUB_TOKEN` environment variable to
+authenticate the requests.
+
+```yaml
 - name: Setup Exoscale CLI
   uses: nhedger/setup-exoscale@v1
-  with:
-    authenticate: true
-    account: my-account
-    zone: ch-gva-2
-    key: ${{ secrets.EXOSCALE_KEY }}
-    secret: ${{ secrets.EXOSCALE_SECRET }}
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+
 
 ## License
 
