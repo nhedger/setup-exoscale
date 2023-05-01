@@ -2,7 +2,7 @@ name: setup-exoscale
 author: nhedger
 description: Setup Exoscale CLI in GitHub Actions
 branding:
-  color: red
+  color: white
   icon: terminal
 inputs:
   version:
