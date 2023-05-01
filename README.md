@@ -106,11 +106,19 @@ Install the latest version of the Exoscale CLI and authenticate it.
 
 ## Caveats
 
-This action makes HTTP requests to the GitHub API to determine the URL of
+This action makes HTTP requests to the GitHub REST API to determine the URL of
 the assets to download. By default, these requests are made anonymously,
-which means that they are subject to harsher rate limits. If you encounter
-rate limiting issues, you can set the `GITHUB_TOKEN` environment variable to
-authenticate the requests.
+which means that they are subject to harsher rate limits.
+
+> GitHub-hosted **macOS** runners are typically subject to this issue, because
+> most of them share a common IP address, which increases the likelihood of
+> hitting the rate limit.
+
+If you encounter rate limiting issues, you can set the `GITHUB_TOKEN`
+environment variable to authenticate the requests and increase the
+[rate limit][rate-limit].
+
+[rate-limit]: https://docs.github.com/en/actions/learn-github-actions/usage-limits-billing-and-administration#usage-limits
 
 ```yaml
 - name: Setup Exoscale CLI
@@ -118,8 +126,6 @@ authenticate the requests.
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
-
-
 
 ## License
 
