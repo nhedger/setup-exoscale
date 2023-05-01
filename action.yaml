@@ -25,9 +25,6 @@ inputs:
   secret:
     description: The Exoscale API secret
     required: false
-  GITHUB_TOKEN:
-    description: The GitHub token
-    required: false
 runs:
   using: 'node16'
   main: 'dist/index.mjs'
