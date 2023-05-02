@@ -22,6 +22,8 @@ jobs:
         uses: ./
         with:
           version: ${{ matrix.version }}
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: Test the CLI
         run: exo version
   test-authenticated:
