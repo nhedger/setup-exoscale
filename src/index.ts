@@ -7,7 +7,11 @@ import { createActionAuth } from '@octokit/auth-action';
     await setup({
         version: getInput('version'),
         platform: process.platform as 'linux' | 'darwin' | 'win32',
-        octokit: new Octokit({ auth: (await createActionAuth()()).token }),
+        octokit: new Octokit({
+            ...((process.env.GITHUB_TOKEN || getInput('GITHUB_TOKEN')) && {
+                auth: (await createActionAuth()()).token,
+            }),
+        }),
         authentication: {
             authenticate: getInput('authenticate') === 'true',
             account: getInput('account'),

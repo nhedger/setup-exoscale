@@ -13388,7 +13388,11 @@ const authenticate = async (options) => {
   await setup({
     version: (0,core.getInput)("version"),
     platform: process.platform,
-    octokit: new dist_node/* Octokit */.v({ auth: (await (0,auth_action_dist_node/* createActionAuth */.C)()()).token }),
+    octokit: new dist_node/* Octokit */.v({
+      ...(process.env.GITHUB_TOKEN || (0,core.getInput)("GITHUB_TOKEN")) && {
+        auth: (await (0,auth_action_dist_node/* createActionAuth */.C)()()).token
+      }
+    }),
     authentication: {
       authenticate: (0,core.getInput)("authenticate") === "true",
       account: (0,core.getInput)("account"),
