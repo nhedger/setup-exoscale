@@ -1,6 +1,6 @@
 import { basename, join } from 'path';
 import { Octokit } from '@octokit/rest';
-import { symlink, writeFile, mkdir } from 'fs/promises';
+import { symlink, writeFile, stat } from 'fs/promises';
 import { RequestError } from '@octokit/request-error';
 import { addPath, exportVariable, setFailed } from '@actions/core';
 import { downloadTool, extractTar, extractZip } from '@actions/tool-cache';
@@ -173,10 +173,9 @@ const install = async (archivePath: string, options: SetupOptions) => {
             ? await extractZip(archivePath)
             : await extractTar(archivePath);
 
-    // The macOS binary is named "exoscale-cli" instead of "exo" like
-    // on other platforms, so we need to create a symlink to make it
-    // available as "exo" as well.
-    if (options.platform === 'darwin') {
+    // The macOS binary is named "exoscale-cli" in some version instead of "exo" like on other
+    // platforms, so we need to create a symlink to make it available as "exo" as well.
+    if (options.platform === 'darwin' && !(await stat(join(pathToCLI, 'exo')).catch(() => false))) {
         await symlink(join(pathToCLI, 'exoscale-cli'), join(pathToCLI, 'exo'));
     }
 
