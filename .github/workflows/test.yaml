@@ -22,8 +22,6 @@ jobs:
         uses: ./
         with:
           version: ${{ matrix.version }}
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: Test the CLI
         run: exo version
   test-authenticated:
@@ -46,7 +44,5 @@ jobs:
           account: ${{ secrets.EXOSCALE_ACCOUNT }}
           key: ${{ secrets.EXOSCALE_KEY }}
           secret: ${{ secrets.EXOSCALE_SECRET }}
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       - name: Test the CLI
         run: exo config list
