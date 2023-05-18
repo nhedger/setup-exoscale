@@ -13352,7 +13352,7 @@ const findAsset = async (releaseId, options) => {
 };
 const install = async (archivePath, options) => {
   const pathToCLI = options.platform === "win32" ? await (0,tool_cache.extractZip)(archivePath) : await (0,tool_cache.extractTar)(archivePath);
-  if (options.platform === "darwin") {
+  if (options.platform === "darwin" && !await (0,promises_namespaceObject.stat)((0,external_path_.join)(pathToCLI, "exo")).catch(() => false)) {
     await (0,promises_namespaceObject.symlink)((0,external_path_.join)(pathToCLI, "exoscale-cli"), (0,external_path_.join)(pathToCLI, "exo"));
   }
   (0,core.addPath)(pathToCLI);
@@ -13389,9 +13389,7 @@ const authenticate = async (options) => {
     version: (0,core.getInput)("version"),
     platform: process.platform,
     octokit: new dist_node/* Octokit */.v({
-      ...(process.env.GITHUB_TOKEN || (0,core.getInput)("GITHUB_TOKEN")) && {
-        auth: (await (0,auth_action_dist_node/* createActionAuth */.C)()()).token
-      }
+      auth: (await (0,auth_action_dist_node/* createActionAuth */.C)()()).token
     }),
     authentication: {
       authenticate: (0,core.getInput)("authenticate") === "true",
