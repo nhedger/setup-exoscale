@@ -8,7 +8,10 @@
     "postinstall": "lefthook install"
   },
   "keywords": ["exoscale", "cli", "github", "actions"],
-  "author": "",
+  "author": {
+    "name": "Nicolas Hedger",
+    "email": "nicolas@hedger.ch"
+  },
   "license": "ISC",
   "dependencies": {
     "@actions/core": "^1.10.0",
