@@ -2,7 +2,7 @@ name: Integrate
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, "releases/v*" ]
   pull_request:
   workflow_dispatch:
 
