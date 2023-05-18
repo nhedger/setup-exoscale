@@ -80,7 +80,7 @@ const download = async (options: SetupOptions): Promise<string> => {
         const assetURL = await findAsset(releaseId, options);
         return await downloadTool(assetURL);
     } catch (error) {
-        if (typeof error === RequestError) {
+        if (error instanceof RequestError) {
             const requestError = error as RequestError;
             if (
                 requestError.status === 403 &&
@@ -120,7 +120,7 @@ const findRelease = async (options: SetupOptions) => {
             })
         ).data.id;
     } catch (error) {
-        if (typeof error === RequestError) {
+        if (error instanceof RequestError) {
             const requestError = error as RequestError;
             if (requestError.status === 404) {
                 throw new Error(
