@@ -1,4 +1,4 @@
-import { basename, join } from 'path';
+import { join } from 'path';
 import { Octokit } from '@octokit/rest';
 import { symlink, writeFile, stat } from 'fs/promises';
 import { RequestError } from '@octokit/request-error';
