@@ -24,32 +24,27 @@ The following inputs are supported.
     # Example values: "1.67.0", "latest"
     version: "latest"
 
-    # Whether to authenticate the Exoscale CLI.
-    # This input is optional and defaults to "false".
-    # Example values: "true", "false"
-    authenticate: false
-
     # The default Exoscale zone to use when authenticating the CLI.
     # This input is optional and defaults to "ch-gva-2".
-    # This input is required if "authenticate" is set to "true".
+    # This input is required to authenticate the Exoscale CLI.
     # Example values: "ch-gva-2", "de-fra-1"
     zone: "<exoscale-zone>"
 
     # The Exoscale account to use when authenticating the CLI.
     # This input is optional.
-    # This input is required if "authenticate" is set to "true".
+    # This input is required to authenticate the Exoscale CLI.
     # Example value: "my-account"
     account: "<exoscale-account-name>"
 
     # The Exoscale API key to use when authenticating the CLI.
     # This input is optional.
-    # This input is required if "authenticate" is set to "true".
+    # This input is required to authenticate the Exoscale CLI.
     # Example value: "EXOb7e97b99f76e32d36351792f"
     key: "<exoscale-api-key>"
 
     # The Exoscale API secret to use when authenticating the CLI.
     # This input is optional.
-    # This input is required if "authenticate" is set to "true".
+    # This input is required to authenticate the Exoscale CLI.
     # Example value: "yftnYtkmylaguBIkTGslohShq5wKHLEtcTGQbGGBGxY"
     secret: "<exoscale-api-secret>"
 
@@ -95,7 +90,6 @@ Install the latest version of the Exoscale CLI and authenticate it.
 - name: Setup Exoscale CLI
   uses: nhedger/setup-exoscale@v1
   with:
-    authenticate: true
     account: my-account
     zone: ch-gva-2
     key: ${{ secrets.EXOSCALE_KEY }}
