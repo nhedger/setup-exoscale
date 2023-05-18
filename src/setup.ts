@@ -12,7 +12,7 @@ export interface SetupOptions {
     /**
      * Version of the exoscale CLI to download
      */
-    version: string;
+    version?: string;
 
     /**
      * Operating system to download the CLI for
@@ -24,16 +24,16 @@ export interface SetupOptions {
      */
     authentication?: {
         /** Name of the Exoscale account to use. */
-        account: string;
+        account?: string;
 
         /** Name of the default Exoscale zone to use. */
-        zone: string;
+        zone?: string;
 
         /** Exoscale API key. */
-        key: string;
+        key?: string;
 
         /** Exoscale API secret. */
-        secret: string;
+        secret?: string;
     };
 
     /**
@@ -182,7 +182,7 @@ const install = async (archivePath: string, options: SetupOptions) => {
  * Authenticates the Exoscale CLI.
  */
 const authenticate = async (options: SetupOptions) => {
-    if (Object.entries(options.authentication!).some(([, value]) => !value || value === '')) {
+    if (Object.entries(options.authentication!).some(([, value]) => !value)) {
         info('Not authenticating the Exoscale CLI as no authentication options were provided.');
         return;
     }
