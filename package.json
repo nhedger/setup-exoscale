@@ -7,7 +7,7 @@
     "package": "ncc build build/index.mjs -o dist",
     "postinstall": "lefthook install"
   },
-  "keywords": [],
+  "keywords": ["exoscale", "cli", "github", "actions"],
   "author": "",
   "license": "ISC",
   "dependencies": {
