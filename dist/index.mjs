@@ -13318,9 +13318,7 @@ const setup = async (config) => {
   try {
     const archivePath = await download(options);
     await install(archivePath, options);
-    if (options.authentication?.authenticate) {
-      await authenticate(options);
-    }
+    await authenticate(options);
   } catch (error) {
     console.log(error);
     (0,core.setFailed)(error.message);
@@ -13403,13 +13401,12 @@ const install = async (archivePath, options) => {
   (0,core.addPath)(pathToCLI);
 };
 const authenticate = async (options) => {
-  if (Object.entries(options.authentication).some(([, value]) => !value)) {
-    throw new Error(`
-            Cannot authenticate the Exoscale CLI without all authentication options.
-            Please provide the following options: account, zone, key, secret.
-        `);
+  if (Object.entries(options.authentication ?? {}).some(([, value]) => !value)) {
+    (0,core.info)("Not authenticating the Exoscale CLI as no authentication options were provided.");
+    return;
   }
   const { account, zone, key, secret } = options.authentication;
+  (0,core.info)(`Authenticating the Exoscale CLI as ${account}.`);
   const configFile = `defaultaccount = "${account}"
 [[accounts]]
   account = "${account}"
@@ -13429,19 +13426,22 @@ const authenticate = async (options) => {
   (0,core.exportVariable)("EXOSCALE_ACCOUNT", account);
 };
 
+const getInput = (name) => {
+  return (0,core.getInput)(name) === "" ? void 0 : (0,core.getInput)(name);
+};
+
 (async () => {
   await setup({
-    version: (0,core.getInput)("version"),
+    version: getInput("version"),
     platform: process.platform,
     octokit: new dist_node/* Octokit */.v({
       auth: (await (0,auth_action_dist_node/* createActionAuth */.C)()()).token
     }),
     authentication: {
-      authenticate: (0,core.getInput)("authenticate") === "true",
-      account: (0,core.getInput)("account"),
-      zone: (0,core.getInput)("zone"),
-      key: (0,core.getInput)("key"),
-      secret: (0,core.getInput)("secret")
+      account: getInput("account"),
+      zone: getInput("zone"),
+      key: getInput("key"),
+      secret: getInput("secret")
     }
   });
 })();

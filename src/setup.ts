@@ -2,7 +2,7 @@ import { basename, join } from 'path';
 import { Octokit } from '@octokit/rest';
 import { symlink, writeFile, stat } from 'fs/promises';
 import { RequestError } from '@octokit/request-error';
-import { addPath, exportVariable, setFailed } from '@actions/core';
+import {addPath, exportVariable, info, setFailed} from '@actions/core';
 import { downloadTool, extractTar, extractZip } from '@actions/tool-cache';
 
 /**
@@ -12,7 +12,7 @@ export interface SetupOptions {
     /**
      * Version of the exoscale CLI to download
      */
-    version: string;
+    version?: string;
 
     /**
      * Operating system to download the CLI for
@@ -23,20 +23,17 @@ export interface SetupOptions {
      * Authentication options
      */
     authentication?: {
-        /** Whether to authenticate the Exoscale CLI. */
-        authenticate: boolean;
-
         /** Name of the Exoscale account to use. */
-        account: string;
+        account?: string;
 
         /** Name of the default Exoscale zone to use. */
-        zone: string;
+        zone?: string;
 
         /** Exoscale API key. */
-        key: string;
+        key?: string;
 
         /** Exoscale API secret. */
-        secret: string;
+        secret?: string;
     };
 
     /**
@@ -62,9 +59,7 @@ export const setup = async (config: Partial<SetupOptions>) => {
         await install(archivePath, options);
 
         // Authenticate the Exoscale CLI
-        if (options.authentication?.authenticate) {
-            await authenticate(options);
-        }
+        await authenticate(options);
     } catch (error: any) {
         console.log(error);
         setFailed(error.message);
@@ -187,14 +182,14 @@ const install = async (archivePath: string, options: SetupOptions) => {
  * Authenticates the Exoscale CLI.
  */
 const authenticate = async (options: SetupOptions) => {
-    if (Object.entries(options.authentication!).some(([, value]) => !value)) {
-        throw new Error(`
-            Cannot authenticate the Exoscale CLI without all authentication options.
-            Please provide the following options: account, zone, key, secret.
-        `);
+    if (Object.entries(options.authentication ?? {}).some(([, value]) => !value)) {
+        info('Not authenticating the Exoscale CLI as no authentication options were provided.');
+        return;
     }
 
     const { account, zone, key, secret } = options.authentication!;
+
+    info(`Authenticating the Exoscale CLI as ${account}.`);
 
     const configFile =
         `defaultaccount = "${account}"\n` +

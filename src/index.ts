@@ -1,7 +1,8 @@
 import { setup } from './setup';
 import { Octokit } from '@octokit/rest';
-import { getInput } from '@actions/core';
+import { getInput as coreGetInput } from '@actions/core';
 import { createActionAuth } from '@octokit/auth-action';
+import { getInput } from "./helpers";
 
 (async () => {
     await setup({
@@ -11,7 +12,6 @@ import { createActionAuth } from '@octokit/auth-action';
             auth: (await createActionAuth()()).token,
         }),
         authentication: {
-            authenticate: getInput('authenticate') === 'true',
             account: getInput('account'),
             zone: getInput('zone'),
             key: getInput('key'),
@@ -19,3 +19,5 @@ import { createActionAuth } from '@octokit/auth-action';
         },
     });
 })();
+
+
