@@ -13401,8 +13401,10 @@ const install = async (archivePath, options) => {
   (0,core.addPath)(pathToCLI);
 };
 const authenticate = async (options) => {
-  if (Object.entries(options.authentication).some(([, value]) => !value)) {
+  if (Object.entries(options.authentication ?? {}).some(([, value]) => value === void 0)) {
+    console.log(options.authentication);
     (0,core.info)("Not authenticating the Exoscale CLI as no authentication options were provided.");
+    return;
   }
   const { account, zone, key, secret } = options.authentication;
   const configFile = `defaultaccount = "${account}"
@@ -13424,19 +13426,22 @@ const authenticate = async (options) => {
   (0,core.exportVariable)("EXOSCALE_ACCOUNT", account);
 };
 
+const getInput = (name) => {
+  return (0,core.getInput)(name) === "" ? void 0 : (0,core.getInput)(name);
+};
+
 (async () => {
   await setup({
-    version: (0,core.getInput)("version"),
+    version: getInput("version"),
     platform: process.platform,
     octokit: new dist_node/* Octokit */.v({
       auth: (await (0,auth_action_dist_node/* createActionAuth */.C)()()).token
     }),
     authentication: {
-      authenticate: (0,core.getInput)("authenticate") === "true",
-      account: (0,core.getInput)("account"),
-      zone: (0,core.getInput)("zone"),
-      key: (0,core.getInput)("key"),
-      secret: (0,core.getInput)("secret")
+      account: getInput("account"),
+      zone: getInput("zone"),
+      key: getInput("key"),
+      secret: getInput("secret")
     }
   });
 })();
