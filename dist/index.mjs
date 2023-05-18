@@ -13318,9 +13318,7 @@ const setup = async (config) => {
   try {
     const archivePath = await download(options);
     await install(archivePath, options);
-    if (options.authentication?.authenticate) {
-      await authenticate(options);
-    }
+    await authenticate(options);
   } catch (error) {
     console.log(error);
     (0,core.setFailed)(error.message);
@@ -13404,10 +13402,7 @@ const install = async (archivePath, options) => {
 };
 const authenticate = async (options) => {
   if (Object.entries(options.authentication).some(([, value]) => !value)) {
-    throw new Error(`
-            Cannot authenticate the Exoscale CLI without all authentication options.
-            Please provide the following options: account, zone, key, secret.
-        `);
+    (0,core.info)("Not authenticating the Exoscale CLI as no authentication options were provided.");
   }
   const { account, zone, key, secret } = options.authentication;
   const configFile = `defaultaccount = "${account}"
