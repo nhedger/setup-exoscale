@@ -52,6 +52,11 @@ The following inputs are supported.
     # This input is required if "authenticate" is set to "true".
     # Example value: "yftnYtkmylaguBIkTGslohShq5wKHLEtcTGQbGGBGxY"
     secret: "<exoscale-api-secret>"
+
+    # The GitHub token to use to authenticate GitHub API requests.
+    # This input is optional and defaults to the job's GitHub token.
+    # Example value: ${{ secrets.GITHUB_TOKEN }}
+    token: ${{ github.token }}
 ```
 
 ## Examples
