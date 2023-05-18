@@ -100,29 +100,6 @@ Install the latest version of the Exoscale CLI and authenticate it.
   run: exo vm list
 ```
 
-## Caveats
-
-This action makes HTTP requests to the GitHub REST API to determine the URL of
-the assets to download. By default, these requests are made anonymously,
-which means that they are subject to harsher rate limits.
-
-> GitHub-hosted **macOS** runners are typically subject to this issue, because
-> most of them share a common IP address, which increases the likelihood of
-> hitting the rate limit.
-
-If you encounter rate limiting issues, try setting the `GITHUB_TOKEN`
-environment variable to authenticate the requests and increase the
-[rate limit][rate-limit].
-
-[rate-limit]: https://docs.github.com/en/actions/learn-github-actions/usage-limits-billing-and-administration#usage-limits
-
-```yaml
-- name: Setup Exoscale CLI
-  uses: nhedger/setup-exoscale@v1
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
-
 ## License
 
 The scripts and documentation in this project are licensed under
