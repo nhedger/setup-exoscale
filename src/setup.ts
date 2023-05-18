@@ -189,6 +189,8 @@ const authenticate = async (options: SetupOptions) => {
 
     const { account, zone, key, secret } = options.authentication!;
 
+    info(`Authenticating the Exoscale CLI as ${account}.`);
+
     const configFile =
         `defaultaccount = "${account}"\n` +
         '[[accounts]]\n' +
