@@ -13,9 +13,6 @@ inputs:
     description: The version of the Exoscale CLI to install
     required: true
     default: latest
-  authenticate:
-    description: Authenticate the Exoscale CLI
-    required: false
   account:
     description: The Exoscale account name
     required: false

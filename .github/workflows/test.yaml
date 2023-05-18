@@ -38,7 +38,6 @@ jobs:
       - name: Setup Exoscale CLI
         uses: ./
         with:
-          authenticate: true
           zone: ch-gva-2
           version: ${{ matrix.version }}
           account: ${{ secrets.EXOSCALE_ACCOUNT }}
