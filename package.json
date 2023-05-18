@@ -1,6 +1,5 @@
 {
   "name": "setup-exoscale",
-  "version": "1.0.0",
   "description": "Setup Exoscale CLI in GitHub Actions",
   "scripts": {
     "build": "unbuild",
