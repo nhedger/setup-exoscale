@@ -13401,8 +13401,7 @@ const install = async (archivePath, options) => {
   (0,core.addPath)(pathToCLI);
 };
 const authenticate = async (options) => {
-  if (Object.entries(options.authentication ?? {}).some(([, value]) => value === void 0)) {
-    console.log(options.authentication);
+  if (Object.entries(options.authentication ?? {}).some(([, value]) => !value)) {
     (0,core.info)("Not authenticating the Exoscale CLI as no authentication options were provided.");
     return;
   }
