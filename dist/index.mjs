@@ -3888,7 +3888,7 @@ function _unique(values) {
 
 /***/ }),
 
-/***/ 5757:
+/***/ 8466:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 
@@ -14662,8 +14662,8 @@ var rest_dist_node = __nccwpck_require__(7601);
 const promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("fs/promises");
 // EXTERNAL MODULE: external "path"
 var external_path_ = __nccwpck_require__(1017);
-// EXTERNAL MODULE: ./node_modules/.pnpm/@octokit+auth-action@2.1.1/node_modules/@octokit/auth-action/dist-node/index.js
-var auth_action_dist_node = __nccwpck_require__(5757);
+// EXTERNAL MODULE: ./node_modules/.pnpm/@octokit+auth-action@3.0.0/node_modules/@octokit/auth-action/dist-node/index.js
+var auth_action_dist_node = __nccwpck_require__(8466);
 ;// CONCATENATED MODULE: ./build/index.mjs
 
 
