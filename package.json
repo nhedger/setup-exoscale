@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@hedger/prettier-config": "^1.2.0",
-    "@octokit/types": "^9.2.3",
+    "@octokit/types": "^9.3.1",
     "@types/node": "^16.18.31",
     "@vercel/ncc": "^0.36.1",
     "lefthook": "^1.4.1",
