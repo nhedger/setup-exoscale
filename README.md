@@ -1,10 +1,8 @@
-![Banner](.github/banner.svg)
+# Setup Exoscale CLI in GitHub Actions
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/nhedger/setup-exoscale?label=latest&logo=github)](https://github.com/marketplace/actions/setup-exoscale)
 [![Test](https://github.com/nhedger/setup-exoscale/actions/workflows/test.yaml/badge.svg)](https://github.com/nhedger/setup-exoscale/actions/workflows/test.yaml)
 [![Integrate](https://github.com/nhedger/setup-exoscale/actions/workflows/integrate.yaml/badge.svg)](https://github.com/nhedger/setup-exoscale/actions/workflows/integrate.yaml)
-
-# Setup Exoscale CLI in GitHub Actions
 
 **Setup Exoscale** is a GitHub action that provides a cross-platform interface
 for setting up the [Exoscale CLI](https://github.com/exoscale/cli) in GitHub
