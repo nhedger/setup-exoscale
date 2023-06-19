@@ -14,7 +14,7 @@ The following inputs are supported.
 
 ```yaml
 - name: Setup Exoscale
-  uses: nhedger/setup-exoscale@v1
+  uses: nhedger/setup-exoscale@v2
   with:
 
     # The version of the Exoscale CLI to install.
