@@ -32,7 +32,7 @@
     "@hedger/prettier-config": "^1.2.0",
     "@octokit/types": "^11.1.0",
     "@types/node": "^16.18.36",
-    "@vercel/ncc": "^0.36.1",
+    "@vercel/ncc": "^0.38.0",
     "lefthook": "^1.4.9",
     "unbuild": "^1.2.1"
   },
