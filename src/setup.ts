@@ -1,7 +1,6 @@
 import { addPath, exportVariable, info, setFailed } from "@actions/core";
 import { downloadTool, extractTar, extractZip } from "@actions/tool-cache";
 import { RequestError } from "@octokit/request-error";
-import { Endpoints, OctokitResponse } from "@octokit/types";
 import { Octokit } from "@octokit/rest";
 import { stat, symlink, writeFile } from "fs/promises";
 import { join } from "path";
