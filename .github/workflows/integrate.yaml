@@ -45,5 +45,5 @@ jobs:
       with:
         run_install: true
 
-    - name: Run Rome
-      run: pnpm rome ci .
+    - name: Run Biome
+      run: pnpm biome ci .
