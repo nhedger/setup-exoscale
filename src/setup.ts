@@ -80,7 +80,10 @@ const download = async (options: SetupOptions): Promise<string> => {
 	} catch (error) {
 		if (error instanceof RequestError) {
 			const requestError = error as RequestError;
-			if (requestError.status === 403 && requestError.response?.headers["x-ratelimit-remaining"] === "0") {
+			if (
+				requestError.status === 403 &&
+				requestError.response?.headers["x-ratelimit-remaining"] === "0"
+			) {
 				throw new Error(`
                     You have exceeded the GitHub API rate limit.
                     Please try again in ${requestError.response?.headers["x-ratelimit-reset"]} seconds.
@@ -118,7 +121,9 @@ const findRelease = async (options: SetupOptions) => {
 		if (error instanceof RequestError) {
 			const requestError = error as RequestError;
 			if (requestError.status === 404) {
-				throw new Error(`Version ${options.version} of the Exoscale CLI does not exist.`);
+				throw new Error(
+					`Version ${options.version} of the Exoscale CLI does not exist.`,
+				);
 			}
 			throw error;
 		}
@@ -130,12 +135,14 @@ const findRelease = async (options: SetupOptions) => {
  * Finds the asset for the given release ID and options
  */
 const findAsset = async (releaseId: number, options: SetupOptions) => {
-
-	const assets = await options.octokit.paginate('GET /repos/{owner}/{repo}/releases/{release_id}/assets', {
-		owner: "exoscale",
-		repo: "cli",
-		release_id: releaseId,
-	});
+	const assets = await options.octokit.paginate(
+		"GET /repos/{owner}/{repo}/releases/{release_id}/assets",
+		{
+			owner: "exoscale",
+			repo: "cli",
+			release_id: releaseId,
+		},
+	);
 
 	const patterns: Map<string, string> = new Map([
 		["linux", "linux_amd64.tar.gz"],
@@ -144,11 +151,15 @@ const findAsset = async (releaseId: number, options: SetupOptions) => {
 	]);
 
 	const asset = assets.find((asset) =>
-		asset.name.endsWith(patterns.get(options.platform) as SetupOptions["platform"]),
+		asset.name.endsWith(
+			patterns.get(options.platform) as SetupOptions["platform"],
+		),
 	);
 
 	if (!asset) {
-		throw new Error(`Could not find an Exoscale CLI release for ${options.platform} for the given version.`);
+		throw new Error(
+			`Could not find an Exoscale CLI release for ${options.platform} for the given version.`,
+		);
 	}
 
 	return asset.browser_download_url;
@@ -158,11 +169,17 @@ const findAsset = async (releaseId: number, options: SetupOptions) => {
  * Installs the downloaded Exoscale CLI
  */
 const install = async (archivePath: string, options: SetupOptions) => {
-	const pathToCLI = options.platform === "win32" ? await extractZip(archivePath) : await extractTar(archivePath);
+	const pathToCLI =
+		options.platform === "win32"
+			? await extractZip(archivePath)
+			: await extractTar(archivePath);
 
 	// The macOS binary is named "exoscale-cli" in some version instead of "exo" like on other
 	// platforms, so we need to create a symlink to make it available as "exo" as well.
-	if (options.platform === "darwin" && !(await stat(join(pathToCLI, "exo")).catch(() => false))) {
+	if (
+		options.platform === "darwin" &&
+		!(await stat(join(pathToCLI, "exo")).catch(() => false))
+	) {
 		await symlink(join(pathToCLI, "exoscale-cli"), join(pathToCLI, "exo"));
 	}
 
@@ -174,8 +191,13 @@ const install = async (archivePath: string, options: SetupOptions) => {
  * Authenticates the Exoscale CLI.
  */
 const authenticate = async (options: SetupOptions) => {
-	if (!options.authentication || Object.entries(options.authentication ?? {}).some(([, value]) => !value)) {
-		info("Not authenticating the Exoscale CLI as no authentication options were provided.");
+	if (
+		!options.authentication ||
+		Object.entries(options.authentication ?? {}).some(([, value]) => !value)
+	) {
+		info(
+			"Not authenticating the Exoscale CLI as no authentication options were provided.",
+		);
 		return;
 	}
 
@@ -185,7 +207,10 @@ const authenticate = async (options: SetupOptions) => {
 
 	const configFile = `defaultaccount = "${account}"\n[[accounts]]\n  account = "${account}"\n  defaultZone = "${zone}"\n  endpoint = "https://api.exoscale.com/v1"\n  environment = ""\n  key = "${key}"\n  name = "${account}"\n  secret = "${secret}"\n`;
 
-	const configPath = join(process.env.RUNNER_TEMP || "/tmp", "exoscale-config.toml");
+	const configPath = join(
+		process.env.RUNNER_TEMP || "/tmp",
+		"exoscale-config.toml",
+	);
 
 	await writeFile(configPath, configFile);
 
