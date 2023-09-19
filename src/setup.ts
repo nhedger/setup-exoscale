@@ -1,6 +1,7 @@
 import { addPath, exportVariable, info, setFailed } from "@actions/core";
 import { downloadTool, extractTar, extractZip } from "@actions/tool-cache";
 import { RequestError } from "@octokit/request-error";
+import { Endpoints, OctokitResponse } from "@octokit/types";
 import { Octokit } from "@octokit/rest";
 import { stat, symlink, writeFile } from "fs/promises";
 import { join } from "path";
@@ -129,7 +130,8 @@ const findRelease = async (options: SetupOptions) => {
  * Finds the asset for the given release ID and options
  */
 const findAsset = async (releaseId: number, options: SetupOptions) => {
-	const assets = await options.octokit.repos.listReleaseAssets({
+
+	const assets = await options.octokit.paginate('GET /repos/{owner}/{repo}/releases/{release_id}/assets', {
 		owner: "exoscale",
 		repo: "cli",
 		release_id: releaseId,
@@ -141,7 +143,7 @@ const findAsset = async (releaseId: number, options: SetupOptions) => {
 		["win32", "windows_amd64.zip"],
 	]);
 
-	const asset = assets.data.find((asset) =>
+	const asset = assets.find((asset) =>
 		asset.name.endsWith(patterns.get(options.platform) as SetupOptions["platform"]),
 	);
 
