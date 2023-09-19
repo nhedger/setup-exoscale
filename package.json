@@ -5,8 +5,8 @@
     "build": "unbuild",
     "prepackage": "npm run build",
     "package": "ncc build build/index.mjs -o dist",
-    "format": "rome format --write .",
-    "lint": "rome check .",
+    "format": "biome format --write .",
+    "lint": "biome lint . --apply",
     "postinstall": "lefthook install"
   },
   "keywords": [
@@ -25,10 +25,10 @@
     "@octokit/auth-action": "^4.0.0",
     "@octokit/request-error": "^5.0.0",
     "@octokit/rest": "^20.0.1",
-    "rome": "^12.1.3",
     "ts-dedent": "^2.2.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.2.2",
     "@hedger/prettier-config": "^1.2.0",
     "@octokit/types": "^11.1.0",
     "@types/node": "^16.18.36",
