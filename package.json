@@ -1,41 +1,38 @@
 {
-  "name": "setup-exoscale",
-  "description": "Setup Exoscale CLI in GitHub Actions",
-  "scripts": {
-    "build": "unbuild",
-    "prepackage": "npm run build",
-    "package": "ncc build build/index.mjs -o dist",
-    "format": "biome format --write .",
-    "lint": "biome lint . --apply",
-    "postinstall": "lefthook install"
-  },
-  "keywords": [
-    "exoscale",
-    "cli",
-    "github-action"
-  ],
-  "author": {
-    "name": "Nicolas Hedger",
-    "email": "nicolas@hedger.ch"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "@actions/core": "^1.10.1",
-    "@actions/tool-cache": "^2.0.1",
-    "@octokit/auth-action": "^4.0.1",
-    "@octokit/request-error": "^5.0.1",
-    "@octokit/rest": "^20.0.2",
-    "bump": "^0.2.5",
-    "ts-dedent": "^2.2.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.5.3",
-    "@hedger/prettier-config": "^1.2.0",
-    "@octokit/types": "^12.5.0",
-    "@types/node": "^20.8.3",
-    "@vercel/ncc": "^0.38.1",
-    "lefthook": "^1.6.1",
-    "unbuild": "^2.0.0"
-  },
-  "packageManager": "pnpm@8.3.1"
+	"name": "setup-exoscale",
+	"description": "Setup Exoscale CLI in GitHub Actions",
+	"scripts": {
+		"build": "unbuild",
+		"prepackage": "npm run build",
+		"package": "ncc build build/index.mjs -o dist",
+		"format": "biome format --write .",
+		"check": "biome check . --apply",
+		"lint": "biome lint . --apply",
+		"postinstall": "lefthook install"
+	},
+	"keywords": ["exoscale", "cli", "github-action"],
+	"author": {
+		"name": "Nicolas Hedger",
+		"email": "nicolas@hedger.ch"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"@actions/core": "^1.10.1",
+		"@actions/tool-cache": "^2.0.1",
+		"@octokit/rest": "^20.1.0",
+		"bump": "^0.2.5",
+		"ts-dedent": "^2.2.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.6.4",
+		"@hedger/prettier-config": "^1.2.0",
+		"@octokit/auth-action": "^5.1.0",
+		"@octokit/request-error": "^6.1.0",
+		"@octokit/types": "^12.6.0",
+		"@types/node": "^20.12.7",
+		"@vercel/ncc": "^0.38.1",
+		"lefthook": "^1.6.10",
+		"unbuild": "^2.0.0"
+	},
+	"packageManager": "pnpm@8.3.1"
 }
