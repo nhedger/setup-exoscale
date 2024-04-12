@@ -28,7 +28,7 @@
 		"@hedger/prettier-config": "^1.2.0",
 		"@octokit/auth-action": "^5.1.0",
 		"@octokit/request-error": "^6.1.0",
-		"@octokit/types": "^12.6.0",
+		"@octokit/types": "^13.2.0",
 		"@types/node": "^20.12.7",
 		"@vercel/ncc": "^0.38.1",
 		"lefthook": "^1.6.10",
