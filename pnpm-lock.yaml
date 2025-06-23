@@ -28,8 +28,8 @@ devDependencies:
     specifier: ^5.1.1
     version: 5.1.1
   '@octokit/request-error':
-    specifier: ^6.1.8
-    version: 6.1.8
+    specifier: ^7.0.0
+    version: 7.0.0
   '@octokit/types':
     specifier: ^14.1.0
     version: 14.1.0
@@ -509,19 +509,11 @@ packages:
       '@octokit/types': 14.1.0
     dev: false
 
-  /@octokit/request-error@6.1.8:
-    resolution: {integrity: sha512-WEi/R0Jmq+IJKydWlKDmryPcmdYSVjL3ekaiEL1L9eo1sUnqMJ+grqmC9cjk7CA7+b2/T397tO5d8YLOH3qYpQ==}
-    engines: {node: '>= 18'}
-    dependencies:
-      '@octokit/types': 14.1.0
-    dev: true
-
   /@octokit/request-error@7.0.0:
     resolution: {integrity: sha512-KRA7VTGdVyJlh0cP5Tf94hTiYVVqmt2f3I6mnimmaVz4UG3gQV/k4mDJlJv3X67iX6rmN7gSHCF8ssqeMnmhZg==}
     engines: {node: '>= 20'}
     dependencies:
       '@octokit/types': 14.1.0
-    dev: false
 
   /@octokit/request@10.0.2:
     resolution: {integrity: sha512-iYj4SJG/2bbhh+iIpFmG5u49DtJ4lipQ+aPakjL9OKpsGY93wM8w06gvFbEQxcMsZcCvk5th5KkIm2m8o14aWA==}
