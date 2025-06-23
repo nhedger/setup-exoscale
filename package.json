@@ -27,7 +27,7 @@
 		"@biomejs/biome": "^1.9.4",
 		"@hedger/prettier-config": "^1.2.0",
 		"@octokit/auth-action": "^5.1.1",
-		"@octokit/request-error": "^6.1.8",
+		"@octokit/request-error": "^7.0.0",
 		"@octokit/types": "^14.1.0",
 		"@types/node": "^20.12.7",
 		"@vercel/ncc": "^0.38.3",
