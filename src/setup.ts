@@ -4,6 +4,7 @@ import { addPath, exportVariable, info, setFailed } from "@actions/core";
 import { downloadTool, extractTar, extractZip } from "@actions/tool-cache";
 import { RequestError } from "@octokit/request-error";
 import { Octokit } from "@octokit/rest";
+import dedent from "ts-dedent";
 
 /**
  * Exoscale Setup Options
@@ -28,6 +29,9 @@ export interface SetupOptions {
 
 		/** Name of the default Exoscale zone to use. */
 		zone?: string;
+
+		/** Exoscale API endpoint. */
+		endpoint?: string;
 
 		/** Exoscale API key. */
 		key?: string;
@@ -200,11 +204,22 @@ const authenticate = async (options: SetupOptions) => {
 		return;
 	}
 
-	const { account, zone, key, secret } = options.authentication;
+	const { account, zone, endpoint, key, secret } = options.authentication;
 
 	info(`Authenticating the Exoscale CLI as ${account}.`);
 
-	const configFile = `defaultaccount = "${account}"\n[[accounts]]\n  account = "${account}"\n  defaultZone = "${zone}"\n  endpoint = "https://api.exoscale.com/v1"\n  environment = ""\n  key = "${key}"\n  name = "${account}"\n  secret = "${secret}"\n`;
+	const configFile = dedent`
+	defaultaccount = '${account}'
+
+	[[accounts]]
+	defaultZone = '${zone}'
+	key = '${key}'
+	name = '${account}'
+	secret = '${secret}'
+	endpoint = '${endpoint ?? `https://api-${zone}.exoscale.com/v2`}'
+	environment = ''
+	sosendpoint = 'https://sos-${zone}.exo.io'
+	`;
 
 	const configPath = join(
 		process.env.RUNNER_TEMP || "/tmp",

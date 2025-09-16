@@ -20,6 +20,9 @@ inputs:
     description: The Exoscale default zone
     required: true
     default: ch-gva-2
+  endpoint:
+    description: The Exoscale API endpoint (defaults to https://api-{zone}.exoscale.com/v2)
+    required: false
   key:
     description: The Exoscale API key
     required: false
@@ -27,5 +30,5 @@ inputs:
     description: The Exoscale API secret
     required: false
 runs:
-  using: 'node20'
-  main: 'dist/index.mjs'
+  using: "node20"
+  main: "dist/index.mjs"
