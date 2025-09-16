@@ -5730,54 +5730,6 @@ function coerce (version, options) {
 
 /***/ }),
 
-/***/ 315:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.dedent = void 0;
-function dedent(templ) {
-    var values = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        values[_i - 1] = arguments[_i];
-    }
-    var strings = Array.from(typeof templ === 'string' ? [templ] : templ);
-    strings[strings.length - 1] = strings[strings.length - 1].replace(/\r?\n([\t ]*)$/, '');
-    var indentLengths = strings.reduce(function (arr, str) {
-        var matches = str.match(/\n([\t ]+|(?!\s).)/g);
-        if (matches) {
-            return arr.concat(matches.map(function (match) { var _a, _b; return (_b = (_a = match.match(/[\t ]/g)) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0; }));
-        }
-        return arr;
-    }, []);
-    if (indentLengths.length) {
-        var pattern_1 = new RegExp("\n[\t ]{" + Math.min.apply(Math, indentLengths) + "}", 'g');
-        strings = strings.map(function (str) { return str.replace(pattern_1, '\n'); });
-    }
-    strings[0] = strings[0].replace(/^\r?\n/, '');
-    var string = strings[0];
-    values.forEach(function (value, i) {
-        var endentations = string.match(/(?:^|\n)( *)$/);
-        var endentation = endentations ? endentations[1] : '';
-        var indentedValue = value;
-        if (typeof value === 'string' && value.includes('\n')) {
-            indentedValue = String(value)
-                .split('\n')
-                .map(function (str, i) {
-                return i === 0 ? str : "" + endentation + str;
-            })
-                .join('\n');
-        }
-        string += indentedValue + strings[i + 1];
-    });
-    return string;
-}
-exports.dedent = dedent;
-exports["default"] = dedent;
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
 /***/ 6124:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
@@ -33963,8 +33915,94 @@ const promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.ur
 const external_node_path_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:path");
 // EXTERNAL MODULE: ./node_modules/.pnpm/@actions+tool-cache@2.0.2/node_modules/@actions/tool-cache/lib/tool-cache.js
 var tool_cache = __nccwpck_require__(1631);
-// EXTERNAL MODULE: ./node_modules/.pnpm/ts-dedent@2.2.0/node_modules/ts-dedent/dist/index.js
-var dist = __nccwpck_require__(315);
+;// CONCATENATED MODULE: ./node_modules/.pnpm/dedent@1.7.0/node_modules/dedent/dist/dedent.mjs
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return typeof key === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (typeof input !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (typeof res !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+const dedent = createDedent({});
+/* harmony default export */ const dist_dedent = (dedent);
+function createDedent(options) {
+  dedent.withOptions = newOptions => createDedent(_objectSpread(_objectSpread({}, options), newOptions));
+  return dedent;
+  function dedent(strings, ...values) {
+    const raw = typeof strings === "string" ? [strings] : strings.raw;
+    const {
+      alignValues = false,
+      escapeSpecialCharacters = Array.isArray(strings),
+      trimWhitespace = true
+    } = options;
+
+    // first, perform interpolation
+    let result = "";
+    for (let i = 0; i < raw.length; i++) {
+      let next = raw[i];
+      if (escapeSpecialCharacters) {
+        // handle escaped newlines, backticks, and interpolation characters
+        next = next.replace(/\\\n[ \t]*/g, "").replace(/\\`/g, "`").replace(/\\\$/g, "$").replace(/\\\{/g, "{");
+      }
+      result += next;
+      if (i < values.length) {
+        const value = alignValues ? alignValue(values[i], result) : values[i];
+
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+        result += value;
+      }
+    }
+
+    // now strip indentation
+    const lines = result.split("\n");
+    let mindent = null;
+    for (const l of lines) {
+      const m = l.match(/^(\s+)\S+/);
+      if (m) {
+        const indent = m[1].length;
+        if (!mindent) {
+          // this is the first indented line
+          mindent = indent;
+        } else {
+          mindent = Math.min(mindent, indent);
+        }
+      }
+    }
+    if (mindent !== null) {
+      const m = mindent; // appease TypeScript
+      result = lines
+      // https://github.com/typescript-eslint/typescript-eslint/issues/7140
+      // eslint-disable-next-line @typescript-eslint/prefer-string-starts-ends-with
+      .map(l => l[0] === " " || l[0] === "\t" ? l.slice(m) : l).join("\n");
+    }
+
+    // dedent eats leading and trailing whitespace too
+    if (trimWhitespace) {
+      result = result.trim();
+    }
+
+    // handle escaped newlines at the end to ensure they don't get stripped too
+    if (escapeSpecialCharacters) {
+      result = result.replace(/\\n/g, "\n");
+    }
+    return result;
+  }
+}
+
+/**
+ * Adjusts the indentation of a multi-line interpolated value to match the current line.
+ */
+function alignValue(value, precedingText) {
+  if (typeof value !== "string" || !value.includes("\n")) {
+    return value;
+  }
+  const currentLine = precedingText.slice(precedingText.lastIndexOf("\n") + 1);
+  const indentMatch = currentLine.match(/^(\s+)/);
+  if (indentMatch) {
+    const indent = indentMatch[1];
+    return value.replace(/\n/g, `\n${indent}`);
+  }
+  return value;
+}
+
 ;// CONCATENATED MODULE: ./build/index.mjs
 
 
@@ -34196,7 +34234,7 @@ const authenticate = async (options) => {
   }
   const { account, zone, endpoint, key, secret } = options.authentication;
   (0,core.info)(`Authenticating the Exoscale CLI as ${account}.`);
-  const configFile = dist`
+  const configFile = dist_dedent`
 	defaultaccount = '${account}'
 
 	[[accounts]]

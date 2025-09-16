@@ -4,7 +4,7 @@ import { addPath, exportVariable, info, setFailed } from "@actions/core";
 import { downloadTool, extractTar, extractZip } from "@actions/tool-cache";
 import { RequestError } from "@octokit/request-error";
 import { Octokit } from "@octokit/rest";
-import dedent from "ts-dedent";
+import dedent from "dedent";
 
 /**
  * Exoscale Setup Options
