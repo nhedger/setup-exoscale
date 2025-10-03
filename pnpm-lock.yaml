@@ -23,31 +23,31 @@ dependencies:
 
 devDependencies:
   '@biomejs/biome':
-    specifier: ^1.9.4
+    specifier: 1.9.4
     version: 1.9.4
   '@hedger/prettier-config':
-    specifier: ^1.2.0
+    specifier: 1.2.0
     version: 1.2.0
   '@octokit/auth-action':
-    specifier: ^5.1.1
+    specifier: 5.1.1
     version: 5.1.1
   '@octokit/request-error':
-    specifier: ^6.1.8
+    specifier: 6.1.8
     version: 6.1.8
   '@octokit/types':
-    specifier: ^14.1.0
+    specifier: 14.1.0
     version: 14.1.0
   '@types/node':
-    specifier: ^20.12.7
+    specifier: 20.12.7
     version: 20.12.7
   '@vercel/ncc':
-    specifier: ^0.38.3
+    specifier: 0.38.3
     version: 0.38.3
   lefthook:
-    specifier: ^1.13.6
+    specifier: 1.13.6
     version: 1.13.6
   unbuild:
-    specifier: ^3.5.0
+    specifier: 3.5.0
     version: 3.5.0(typescript@5.8.3)
 
 packages:
@@ -100,6 +100,7 @@ packages:
   /@babel/helper-validator-identifier@7.27.1:
     resolution: {integrity: sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dev: true
     optional: true
 
@@ -1215,6 +1216,7 @@ packages:
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+    requiresBuild: true
     dev: true
     optional: true
 
