@@ -29,14 +29,15 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __require = /* @__PURE__ */ createRequire(import.meta.url);
 
 //#endregion
-//#region node_modules/.pnpm/@octokit+auth-token@5.1.0/node_modules/@octokit/auth-token/dist-bundle/index.js
-var REGEX_IS_INSTALLATION_LEGACY = /^v1\./;
-var REGEX_IS_INSTALLATION = /^ghs_/;
-var REGEX_IS_USER_TO_SERVER = /^ghu_/;
+//#region node_modules/@octokit/auth-token/dist-bundle/index.js
+var b64url$1 = "(?:[a-zA-Z0-9_-]+)";
+var sep$1 = "\\.";
+var jwtRE$1 = /* @__PURE__ */ new RegExp(`^${b64url$1}${sep$1}${b64url$1}${sep$1}${b64url$1}$`);
+var isJWT$1 = jwtRE$1.test.bind(jwtRE$1);
 async function auth$1(token) {
-	const isApp = token.split(/\./).length === 3;
-	const isInstallation = REGEX_IS_INSTALLATION_LEGACY.test(token) || REGEX_IS_INSTALLATION.test(token);
-	const isUserToServer = REGEX_IS_USER_TO_SERVER.test(token);
+	const isApp = isJWT$1(token);
+	const isInstallation = token.startsWith("v1.") || token.startsWith("ghs_");
+	const isUserToServer = token.startsWith("ghu_");
 	return {
 		type: "token",
 		token,
@@ -60,7 +61,7 @@ var createTokenAuth$1 = function createTokenAuth2(token) {
 };
 
 //#endregion
-//#region node_modules/.pnpm/@octokit+auth-action@5.1.1/node_modules/@octokit/auth-action/dist-src/index.js
+//#region node_modules/@octokit/auth-action/dist-src/index.js
 const createActionAuth = function createActionAuth2() {
 	if (!process.env.GITHUB_ACTION) throw new Error("[@octokit/auth-action] `GITHUB_ACTION` environment variable is not set. @octokit/auth-action is meant to be used in GitHub Actions only.");
 	const definitions = [
@@ -20992,7 +20993,7 @@ var require_tool_cache = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/@actio
 }) });
 
 //#endregion
-//#region node_modules/.pnpm/@octokit+request-error@6.1.8/node_modules/@octokit/request-error/dist-src/index.js
+//#region node_modules/@octokit/request-error/dist-src/index.js
 var import_tool_cache = /* @__PURE__ */ __toESM(require_tool_cache());
 var RequestError = class extends Error {
 	name;
