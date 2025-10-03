@@ -14,7 +14,7 @@ The following inputs are supported.
 
 ```yaml
 - name: Setup Exoscale
-  uses: nhedger/setup-exoscale@v2
+  uses: nhedger/setup-exoscale@v4
   with:
 
     # The version of the Exoscale CLI to install.
@@ -60,7 +60,7 @@ Setup the latest version of the Exoscale CLI.
 
 ```yaml
 - name: Setup Exoscale CLI
-  uses: nhedger/setup-exoscale@v2
+  uses: nhedger/setup-exoscale@v4
 
 - name: Retrieve Exoscale status
   run: exo status
@@ -72,7 +72,7 @@ Install version `1.67.0` of the Exoscale CLI.
 
 ```yaml
 - name: Setup Exoscale CLI
-  uses: nhedger/setup-exoscale@v2
+  uses: nhedger/setup-exoscale@v4
   with:
     version: 1.67.0
 
@@ -86,7 +86,7 @@ Install the latest version of the Exoscale CLI and authenticate it.
 
 ```yaml
 - name: Setup Exoscale CLI
-  uses: nhedger/setup-exoscale@v2
+  uses: nhedger/setup-exoscale@v4
   with:
     account: my-account
     zone: ch-gva-2
