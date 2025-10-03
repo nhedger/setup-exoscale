@@ -1,6 +1,8 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": ["github>nhedger/renovate"],
+	"automerge": true,
+	"automergeType": "pr",
 	"packageRules": [
 		{
 			"matchPackageNames": ["@types/node"],
