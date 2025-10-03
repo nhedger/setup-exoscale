@@ -27,6 +27,5 @@
 		"@octokit/rest": "^22.0.0",
 		"bump": "^0.2.5",
 		"dedent": "^1.7.0"
-	},
-	"packageManager": "pnpm@8.15.9"
+	}
 }
