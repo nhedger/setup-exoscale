@@ -2,13 +2,7 @@
 	"name": "setup-exoscale",
 	"description": "Setup Exoscale CLI in GitHub Actions",
 	"scripts": {
-		"build": "unbuild",
-		"prepackage": "pnpm run build",
-		"package": "ncc build build/index.mjs -o dist",
-		"format": "biome format --write .",
-		"check": "biome check . --apply",
-		"lint": "biome lint . --apply",
-		"postinstall": "lefthook install"
+		"build": "tsdown"
 	},
 	"keywords": [
 		"exoscale",
@@ -33,9 +27,8 @@
 		"@octokit/request-error": "6.1.8",
 		"@octokit/types": "14.1.0",
 		"@types/node": "20.12.7",
-		"@vercel/ncc": "0.38.3",
 		"lefthook": "1.13.6",
-		"unbuild": "3.5.0"
+		"tsdown": "^0.15.6"
 	},
 	"packageManager": "pnpm@8.15.9"
 }
