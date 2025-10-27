@@ -19,7 +19,7 @@
 		"@octokit/auth-action": "6.0.1",
 		"@octokit/request-error": "7.0.1",
 		"@octokit/types": "15.0.1",
-		"@types/node": "20.19.22",
+		"@types/node": "20.19.23",
 		"lefthook": "2.0.0",
 		"tsdown": "0.15.9",
 		"@actions/core": "1.11.1",
