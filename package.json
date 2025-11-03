@@ -15,7 +15,7 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
-		"@biomejs/biome": "2.3.2",
+		"@biomejs/biome": "2.3.3",
 		"@octokit/auth-action": "6.0.1",
 		"@octokit/request-error": "7.0.1",
 		"@octokit/types": "15.0.1",
