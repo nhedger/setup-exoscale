@@ -21,7 +21,7 @@
 		"@octokit/types": "16.0.0",
 		"@types/node": "20.19.27",
 		"lefthook": "2.0.9",
-		"tsdown": "0.17.2",
+		"tsdown": "0.17.4",
 		"@actions/core": "1.11.1",
 		"@actions/tool-cache": "2.0.2",
 		"@octokit/rest": "22.0.1",
