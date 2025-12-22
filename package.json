@@ -26,6 +26,6 @@
 		"@actions/tool-cache": "2.0.2",
 		"@octokit/rest": "22.0.1",
 		"bump": "0.2.5",
-		"dedent": "1.7.0"
+		"dedent": "1.7.1"
 	}
 }
