@@ -20,7 +20,7 @@
 		"@octokit/request-error": "7.1.0",
 		"@octokit/types": "16.0.0",
 		"@types/node": "20.19.27",
-		"lefthook": "2.0.12",
+		"lefthook": "2.0.13",
 		"tsdown": "0.18.2",
 		"@actions/core": "2.0.1",
 		"@actions/tool-cache": "2.0.2",
