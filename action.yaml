@@ -30,5 +30,5 @@ inputs:
     description: The Exoscale API secret
     required: false
 runs:
-  using: "node20"
+  using: "node24"
   main: "dist/index.mjs"
