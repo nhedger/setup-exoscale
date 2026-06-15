@@ -21,6 +21,11 @@ export interface SetupOptions {
 	platform: "linux" | "darwin" | "win32";
 
 	/**
+	 * CPU architecture to download the CLI for
+	 */
+	architecture: NodeJS.Architecture;
+
+	/**
 	 * Authentication options
 	 */
 	authentication?: {
@@ -49,6 +54,7 @@ export interface SetupOptions {
 const defaultOptions: SetupOptions = {
 	version: "latest",
 	platform: process.platform as "linux" | "darwin" | "win32",
+	architecture: process.arch,
 	octokit: new Octokit(),
 };
 
@@ -147,25 +153,51 @@ const findAsset = async (releaseId: number, options: SetupOptions) => {
 		},
 	);
 
-	const patterns: Map<string, string> = new Map([
-		["linux", "linux_amd64.tar.gz"],
-		["darwin", "darwin_all.tar.gz"],
-		["win32", "windows_amd64.zip"],
-	]);
+	const pattern = findAssetPattern(options);
 
-	const asset = assets.find((asset) =>
-		asset.name.endsWith(
-			patterns.get(options.platform) as SetupOptions["platform"],
-		),
-	);
+	const asset = assets.find((asset) => asset.name.endsWith(pattern));
 
 	if (!asset) {
 		throw new Error(
-			`Could not find an Exoscale CLI release for ${options.platform} for the given version.`,
+			`Could not find an Exoscale CLI release for ${options.platform}/${options.architecture} matching ${pattern} for version ${options.version}.`,
 		);
 	}
 
 	return asset.browser_download_url;
+};
+
+/**
+ * Finds the release asset filename suffix for the given platform and architecture.
+ */
+const findAssetPattern = (options: SetupOptions) => {
+	if (options.platform === "darwin") {
+		return "darwin_all.tar.gz";
+	}
+
+	const architectures: Map<NodeJS.Architecture, string> = new Map([
+		["x64", "amd64"],
+		["arm64", "arm64"],
+	]);
+
+	const architecture = architectures.get(options.architecture);
+
+	if (!architecture) {
+		throw new Error(
+			`Architecture ${options.architecture} is not supported by this action.`,
+		);
+	}
+
+	if (options.platform === "linux") {
+		return `linux_${architecture}.tar.gz`;
+	}
+
+	if (options.platform === "win32") {
+		return `windows_${architecture}.zip`;
+	}
+
+	throw new Error(
+		`Platform ${options.platform} is not supported by this action.`,
+	);
 };
 
 /**

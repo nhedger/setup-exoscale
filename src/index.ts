@@ -7,6 +7,7 @@ import { setup } from "./setup";
 	await setup({
 		version: getInput("version"),
 		platform: process.platform as "linux" | "darwin" | "win32",
+		architecture: process.arch,
 		octokit: new Octokit({
 			auth: (await createActionAuth()()).token,
 		}),

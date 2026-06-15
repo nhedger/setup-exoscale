@@ -19,7 +19,7 @@ The following inputs are supported.
 
     # The version of the Exoscale CLI to install.
     # This input is optional and defaults to "latest".
-    # Example values: "1.67.0", "latest"
+    # Example values: "1.95.0", "latest"
     version: "latest"
 
     # The default Exoscale zone to use when authenticating the CLI.
@@ -68,13 +68,13 @@ Setup the latest version of the Exoscale CLI.
 
 ### Specific version
 
-Install version `1.67.0` of the Exoscale CLI.
+Install version `1.95.0` of the Exoscale CLI.
 
 ```yaml
 - name: Setup Exoscale CLI
   uses: nhedger/setup-exoscale@v4
   with:
-    version: 1.67.0
+    version: 1.95.0
 
 - name: Retrieve Exoscale status
   run: exo status

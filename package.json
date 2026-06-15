@@ -1,6 +1,7 @@
 {
 	"name": "setup-exoscale",
 	"description": "Setup Exoscale CLI in GitHub Actions",
+	"type": "module",
 	"scripts": {
 		"build": "tsdown"
 	},
@@ -15,17 +16,17 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
+		"@actions/core": "3.0.1",
+		"@actions/tool-cache": "4.0.0",
 		"@biomejs/biome": "2.5.0",
 		"@octokit/auth-action": "6.0.2",
 		"@octokit/request-error": "7.1.0",
-		"@octokit/types": "16.0.0",
-		"@types/node": "20.19.43",
-		"lefthook": "2.1.9",
-		"tsdown": "0.22.2",
-		"@actions/core": "3.0.1",
-		"@actions/tool-cache": "4.0.0",
 		"@octokit/rest": "22.0.1",
+		"@octokit/types": "16.0.0",
+		"@types/node": "24.13.2",
 		"bump": "0.2.5",
-		"dedent": "1.7.2"
+		"dedent": "1.7.2",
+		"lefthook": "2.1.9",
+		"tsdown": "0.22.2"
 	}
 }
