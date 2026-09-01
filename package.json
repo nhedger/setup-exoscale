@@ -22,7 +22,7 @@
 		"@octokit/auth-action": "6.0.3",
 		"@octokit/request-error": "7.1.2",
 		"@octokit/rest": "22.0.1",
-		"@octokit/types": "17.0.0",
+		"@octokit/types": "18.0.0",
 		"@types/node": "24.13.2",
 		"bump": "0.2.5",
 		"dedent": "1.7.2",
